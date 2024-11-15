@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Interview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Schedule Interview</h2>
+<form action="/schedule_interview" method="POST" onsubmit="return validateForm()">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" required><br><br>
+
+    <label for="interview_type">Interview Type:</label>
+    <select id="interview_type" name="interview_type" required>
+        <option value="technical">Technical</option>
+        <option value="HR">HR</option>
+        <option value="panel">Panel</option>
+    </select><br><br>
+
+    <label for="user_id">User:</label>
+    <select id="user_id" name="user_id" required>
+        <option value="">Select a user</option> <!-- Placeholder option -->
+        {% for user in users %}
+            <option value="{{ user[0] }}">{{ user[1] }} ({{ user[2] }})</option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Schedule Interview">
+</form>
+
+<a href="{{ url_for('manage_users') }}">Go to Manage Users</a>
+<p>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</p>
+
+<script>
+    function validateForm() {
+        const userId = document.getElementById("user_id").value;
+        if (!userId) {
+            alert("User ID is required.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+</body>
+</html>
