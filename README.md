@@ -44,42 +44,5 @@ This web application is designed to simplify and streamline the process of sched
 3. **Schedule Table**
    - Fields: `ScheduleID`, `Date`, `Time`, `InterviewID`, `UserID`
 
-## Installation
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/<your-username>/interview-scheduling-platform.git
-   cd interview-scheduling-platform
-
-CREATE DATABASE InterviewSchedulingPlatform;
-USE InterviewSchedulingPlatform;
-
--- Create User table
-CREATE TABLE User (
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255),
-    Email VARCHAR(255),
-    Role VARCHAR(50),
-    Password VARCHAR(255),
-    ContactInfo VARCHAR(255)
-);
-
--- Create Interview table
-CREATE TABLE Interview (
-    InterviewID INT AUTO_INCREMENT PRIMARY KEY,
-    InterviewType VARCHAR(50),
-    Status VARCHAR(50)
-);
-
--- Create Schedule table
-CREATE TABLE Schedule (
-    ScheduleID INT AUTO_INCREMENT PRIMARY KEY,
-    Date DATE,
-    Time TIME,
-    InterviewID INT,
-    UserID INT,
-    FOREIGN KEY (InterviewID) REFERENCES Interview(InterviewID),
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
-);
 to run the application
 python app.py
